@@ -6,7 +6,7 @@
 /*   By: gsuter <gostr@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 16:51:31 by gsuter            #+#    #+#             */
-/*   Updated: 2024/02/26 16:51:31 by gsuter           ###   ########.fr       */
+/*   Updated: 2024/04/02 15:27:23 by gsuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ char	**ft_split(char const *s, char c)
 	words = ft_countwords(s, c);
 	split = ft_calloc((words + 1), sizeof(char *));
 	if (!s[0] || split == NULL)
-		exit (0);
+		return (free(split), NULL);
 	while (i < words)
 	{
 		if (s[j] != c)

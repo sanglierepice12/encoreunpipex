@@ -6,7 +6,7 @@
 /*   By: gostr <gostr@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 16:53:28 by gostr             #+#    #+#             */
-/*   Updated: 2024/03/30 16:53:28 by gostr            ###   ########.fr       */
+/*   Updated: 2024/04/02 15:37:07 by gsuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,16 @@ void	ft_init_path(t_struct *var, char **env)
 {
 	size_t	i;
 
-	if (!env)
-		return (var->path = NULL, (void)0);
 	i = 0;
-	while(ft_strncmp(env[i], "PATH=", 5))
+	while (env[i] && ft_strncmp(env[i], "PATH=", 5))
 		i++;
-	var->path = ft_split(env[i] + 5, ':');
-	if (!var->path)
-		exit(EXIT_FAILURE);
+	if (!env[i])
+	{
+		var->path = ft_calloc(1, sizeof(char *));
+		return ;
+	}
+	else
+		var->path = ft_split(env[i] + 5, ':');
 }
 
 int	main(int arc, char **argv, char **env)
@@ -53,11 +55,10 @@ int	main(int arc, char **argv, char **env)
 	t_struct	*var;
 	if (arc != 5)
 		return (ft_printf("Not enough arguments\n"), EXIT_FAILURE);
-	var = malloc(sizeof(t_struct) * 1);
+	var = ft_calloc(1, sizeof(t_struct));
 	if (!var)
-		return (printf("Malloc crash\nw	"), EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	ft_init_path(var, env);
-	ft_process(var, argv, env);
-	ft_free_tab(var->path);
-	free(var);
+	ft_process(var, argv);
+	ft_free_pipex(var);
 }

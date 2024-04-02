@@ -75,7 +75,7 @@ CC		=	cc
 
 AR		=	ar -rc
 
-FLAGS	=	-Wall -Wextra -Werror -Iincs
+FLAGS	=	-Wall -Wextra -Werror -Iincs -g3
 
 all		:
 	@make --no-print-directory ${NAME}
