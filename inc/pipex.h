@@ -16,6 +16,7 @@
 # include "../libft/incs/libft.h"
 # include <fcntl.h>
 # include <sys/wait.h>
+# include <errno.h>
 
 /* ------- PRINTF -------*/
 # include <stdio.h>
@@ -37,7 +38,7 @@ void	ft_init_cmd(t_struct *var);
 /* ------- PROCESS -------*/
 void	ft_process(t_struct *var, char **argv);
 void	ft_free_pipex(t_struct *var);
-void	pipex_exit(t_struct *var);
+void	pipex_exit(t_struct *var, int flag);
 
 /* ------- INIT -------*/
 

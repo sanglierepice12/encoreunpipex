@@ -27,7 +27,7 @@ void	ft_init_cmd(t_struct *var)
 		if (access(path, F_OK) == 0)
 		{
 			var->cmd[0] = path;
-			break;
+			break ;
 		}
 		free(path);
 		i++;
@@ -53,6 +53,7 @@ void	ft_init_path(t_struct *var, char **env)
 int	main(int arc, char **argv, char **env)
 {
 	t_struct	*var;
+
 	if (arc != 5)
 		return (ft_printf("Not enough arguments\n"), EXIT_FAILURE);
 	var = ft_calloc(1, sizeof(t_struct));
