@@ -12,6 +12,16 @@
 
 #include "../inc/pipex.h"
 
+char	*ft_space_cmd(char *cmd)
+{
+	int	i;
+
+	i = 0;
+	while (cmd[i] == 32)
+		i++;
+	return (cmd + i);
+}
+
 void	ft_init_cmd(t_struct *var)
 {
 	size_t	i;
@@ -24,7 +34,7 @@ void	ft_init_cmd(t_struct *var)
 		temp = ft_strjoin(var->path[i], "/");
 		path = ft_strjoin(temp, var->cmd[0]);
 		free(temp);
-		if (access(path, F_OK) == 0)
+		if (access(path, F_OK) == 0 && access(path, X_OK) == 0)
 		{
 			var->cmd[0] = path;
 			break ;
@@ -55,7 +65,7 @@ int	main(int arc, char **argv, char **env)
 	t_struct	*var;
 
 	if (arc != 5)
-		return (ft_printf("Not enough arguments\n"), EXIT_FAILURE);
+		return (ft_printf("Not good number of arguments\n"), EXIT_FAILURE);
 	var = ft_calloc(1, sizeof(t_struct));
 	if (!var)
 		return (EXIT_FAILURE);

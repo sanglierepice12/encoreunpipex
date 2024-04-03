@@ -33,6 +33,7 @@ typedef struct s_struct
 }				t_struct;
 
 /* ------- PIPEX -------*/
+char	*ft_space_cmd(char *cmd);
 void	ft_init_cmd(t_struct *var);
 
 /* ------- PROCESS -------*/
